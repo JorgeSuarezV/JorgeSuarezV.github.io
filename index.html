@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jorge Suarez | Software Developer</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #6b7280;
+      --dark: #1f2937;
+      --light: #f9fafb;
+      --accent: #3b82f6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header styles */
+    header {
+      background-color: var(--dark);
+      color: white;
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero section */
+    .hero {
+      padding: 6rem 0;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to right, var(--dark), #374151);
+      color: white;
+      min-height: 90vh;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      color: #e5e7eb;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    /* About section */
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 3px;
+      background-color: var(--primary);
+      margin: 0.5rem auto 0;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .skill-tag {
+      background-color: #e5e7eb;
+      color: var(--dark);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Projects section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      background-color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* o "cover" si preferís que rellene el div */
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .project-tag {
+      background-color: #e5e7eb;
+      color: var(--dark);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.8rem;
+    }
+
+    /* Experience and Education section */
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      background-color: #e5e7eb;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1px;
+    }
+
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      top: 15px;
+      right: -10px;
+      z-index: 1;
+    }
+
+    .timeline-item:nth-child(even)::after {
+      left: -10px;
+    }
+
+    .timeline-content {
+      padding: 1.5rem;
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-date {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Education section */
+    .education-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .education-date {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Contact section */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.25rem;
+      font-size: 1rem;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .social-link {
+      color: white;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero h2 {
+        font-size: 1.2rem;
+      }
+
+      .timeline::after {
+        left: 31px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+
+      .timeline-item::after {
+        left: 21px;
+      }
+
+      .timeline-item:nth-child(even)::after {
+        left: 21px;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate {
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    /* Video container styles */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">Jorge Suarez</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="animate">Jorge Suarez</h1>
+      <h2 class="animate delay-1">Software Developer</h2>
+      <p class="animate delay-2">Computer Engineering student focused on backend development with growing interest in project management. Passionate about creating impactful software solutions and keeping up with technological trends.</p>
+      <a href="#contact" class="btn animate delay-3">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <p>I'm a Computer Engineering student with a focus on backend development and growing interest in project management. I enjoy working in teams, offering creative solutions, and staying updated with technological trends. My goal is to become a software developer who drives success in projects.</p>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Technical Skills</h3>
+    <div class="skills">
+      <span class="skill-tag">TypeScript</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">Java</span>
+      <span class="skill-tag">Kotlin</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">GraphQL</span>
+      <span class="skill-tag">HTML</span>
+      <span class="skill-tag">CSS</span>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Frameworks & Tools</h3>
+    <div class="skills">
+      <span class="skill-tag">NodeJS</span>
+      <span class="skill-tag">Express</span>
+      <span class="skill-tag">Java Spark</span>
+      <span class="skill-tag">Hibernate</span>
+      <span class="skill-tag">React</span>
+      <span class="skill-tag">React Native</span>
+      <span class="skill-tag">Prisma</span>
+      <span class="skill-tag">Spring</span>
+      <span class="skill-tag">MongoDB</span>
+      <span class="skill-tag">PostgreSQL</span>
+      <span class="skill-tag">HSQLDB</span>
+      <span class="skill-tag">Redis</span>
+      <span class="skill-tag">Docker</span>
+      <span class="skill-tag">AWS</span>
+      <span class="skill-tag">Terraform</span>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Soft Skills</h3>
+    <div class="skills">
+      <span class="skill-tag">Critical Thinking</span>
+      <span class="skill-tag">Teamwork</span>
+      <span class="skill-tag">Fast Learning</span>
+      <span class="skill-tag">Effective Communication</span>
+      <span class="skill-tag">Adaptability Under Pressure</span>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="section" style="background-color: #f3f4f6;">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div style="max-width: 800px; margin: 0 auto;">
+      <div class="education-card">
+        <h3>Computer Engineering</h3>
+        <div class="education-date">2020 - Present</div>
+        <h4>Universidad Austral</h4>
+        <p>Pursuing a degree in Computer Engineering with a focus on software development and engineering principles. Currently in my final years with specialized courses in system design, database management, and software architecture.</p>
+
+        <h4 style="margin-top: 1.5rem;">Academic Experience</h4>
+        <div style="margin-top: 0.5rem;">
+          <h5>Teaching Assistant - Systems Design</h5>
+          <div class="education-date">August 2023 - July 2024</div>
+          <p>Assisted students with design questions and motivated them to think independently in a course focused on teaching critical thinking and database/program construction.</p>
+        </div>
+
+        <div style="margin-top: 1rem;">
+          <h5>Teaching Assistant - Laboratory III</h5>
+          <div class="education-date">March 2024 - Present</div>
+          <p>Supported a practical two-semester course with real clients. My role was to increase team productivity by teaching best practices in development cycles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <!-- Project 1: Robotica-Brazo -->
+      <div class="project-card">
+        <div class="project-image">
+          <img class="" src="https://cdn.discordapp.com/attachments/1020822105610264678/1362701906773934202/image.webp?ex=68035a8c&is=6802090c&hm=9386a290f5354bef6d1599e77252c55ece39d047d4d995791aeca20df0404696&" alt="Robotic Arm Project">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Robotic Arm Control System</h3>
+          <p>Developed a control system for a robotic arm with 5 degrees of freedom, using Arduino for hardware control and Python for the interface.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Flask</span>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Robotics</span>
+            <span class="project-tag">Socket</span>
+          </div>
+          <div class="video-container">
+            <iframe width="315" height="560"
+                    src="https://www.youtube.com/embed/xYNXbaJR4Tw"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+          </div>
+          <a href="https://github.com/JorgeSuarezV/Robotica-Brazo" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; margin-top: 1rem;">View on GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project 2: PrintScript -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="https://cdn.discordapp.com/attachments/1020822105610264678/1362705355263447090/0458a9f1-e149-4037-b9aa-aa4b4fb53c25_propriete-intellectuelle-code-source-protection-compressed.png?ex=68035dc2&is=68020c42&hm=e18cffe715ad3edb614bf8064352022b4d7f56afb505c0d8fe99b78b8554c8ea&" alt="PrintScript Language">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">PrintScript Language</h3>
+          <p>Designed and implemented a custom programming language with lexer, parser, interpreter and a REPL environment for interactive execution of scripts.</p>
+          <div class="project-tags">
+            <span class="project-tag">Java</span>
+            <span class="project-tag">Language Design</span>
+            <span class="project-tag">Parsing</span>
+            <span class="project-tag">Lexical Analysis</span>
+            <span class="project-tag">Microservice architecture</span>
+            <span class="project-tag">Redis</span>
+            <span class="project-tag">Auth0</span>
+            <span class="project-tag">Nginx</span>
+            <span class="project-tag">Docker</span>
+            <span class="project-tag">Github Actions</span>
+            <span class="project-tag">Azure</span>
+          </div>
+          <a href="https://github.com/ing-sis-suarez" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project 3: Starships -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="https://cdn.discordapp.com/attachments/1020822105610264678/1362705747888050226/009.png?ex=68035e20&is=68020ca0&hm=70c9a38e8162bb18ceab165cf71327de3b2a0f6c7acc669405dd5ffcdbb56674&" alt="Starships Project">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Starships API Integration</h3>
+          <p>Built an interactive application that displays and filters data from the Star Wars API, focusing on starships and their specifications.</p>
+          <div class="project-tags">
+            <span class="project-tag">JavaFX</span>
+            <span class="project-tag">Java</span>
+            <span class="project-tag">Game development</span>
+            <span class="project-tag">Game engine</span>
+          </div>
+          <a href="https://github.com/JorgeSuarezV/starships" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+    <!-- Additional Projects Row -->
+    <div class="projects-grid" style="margin-top: 2rem;">
+      <!-- Project 4: Agenda Pública -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="https://cdn.discordapp.com/attachments/1020822105610264678/1362707313189720175/ChatGPT_Image_Apr_18_2025_05_32_09_AM.png?ex=68035f95&is=68020e15&hm=34c51d42f4f19c32eaa25fb2346f67d900b6455f67259e82f12c77fc6e513757&" alt="Agenda Pública">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Agenda Pública</h3>
+          <p>Developed a public agenda application for government transparency, allowing citizens to view and track public officials' schedules and activities.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Openai</span>
+          </div>
+          <a href="https://github.com/JorgeSuarezV/agenda-publica" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project 5: QA Guide -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="https://cdn.discordapp.com/attachments/1020822105610264678/1362708792864800788/raw.png?ex=680360f6&is=68020f76&hm=a458e07e7b1dd1fbf322c8a2975b6a0545248a7f157026fc739d990771815239&" alt="QA Guide">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">QA Testing Guide</h3>
+          <p>Created a comprehensive guide and toolset for quality assurance testing, including automated test frameworks, test case templates, and best practices documentation.</p>
+          <div class="project-tags">
+            <span class="project-tag">Jest</span>
+            <span class="project-tag">Nest</span>
+            <span class="project-tag">Testing</span>
+            <span class="project-tag">Docker</span>
+            <span class="project-tag">Git</span>
+            <span class="project-tag">Github Actions</span>
+          </div>
+          <a href="https://github.com/JorgeSuarezV/qa-guide" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
+        </div>
+      </div>
+
+      <!-- Project 6: Twitter Clone -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="https://cdn.discordapp.com/attachments/1020822105610264678/1362700024059789322/Twitter-para-musicos-1132x600.png?ex=680358cb&is=6802074b&hm=6044e151302a9da841963a8267fd44f92f42b442372567d184616bd191071b3b&" alt="Twitter Clone">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Twitter Clone</h3>
+          <p>Built a full-featured Twitter clone with user authentication, tweet posting, following/followers system, and real-time notifications.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">Express</span>
+            <span class="project-tag">AWS</span>
+            <span class="project-tag">AWS S3</span>
+            <span class="project-tag">Styled Components</span>
+            <span class="project-tag">PostgreSQL</span>
+            <span class="project-tag">Socket.io</span>
+          </div>
+          <a href="https://github.com/JorgeSuarezV/twitter-clone" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="section" style="background-color: #f3f4f6;">
+  <div class="container">
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="timeline">
+      <!-- Sirius Software Experience -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Full Stack Developer</h3>
+          <div class="timeline-date">April 2023 - Present</div>
+          <h4>Sirius Software</h4>
+          <p>Working as a full stack developer focused on healthcare applications and learning platforms, delivering high-quality solutions in cross-functional teams.</p>
+          <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+            <li>Developed complex mobile applications for oncology patients using React Native, implementing critical features for treatment tracking and secure patient-provider communication</li>
+            <li>Engineered comprehensive learning platforms with robust content management capabilities and interactive assessment tools</li>
+            <li>Built scalable backend services using Node.js, Express, and PostgreSQL, handling high-volume data processing while maintaining performance</li>
+            <li>Integrated enterprise-grade security solutions including Auth0 for authentication and authorization flows</li>
+            <li>Designed and deployed cloud infrastructure on AWS using EC2 instances with automated scaling</li>
+            <li>Implemented infrastructure as code using Terraform for consistent and reliable deployments across environments</li>
+            <li>Collaborated with technical leadership on architecture decisions and task planning during sprint cycles</li>
+            <li>Significantly reduced bug rates by implementing comprehensive testing strategies and CI/CD pipelines</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- LTM Software Experience -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Frontend Developer</h3>
+          <div class="timeline-date">June 2022 - March 2023</div>
+          <h4>LTM Software</h4>
+          <p>Worked on e-commerce solutions and order management systems, focusing on Shopify integrations and frontend development.</p>
+          <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+            <li>Developed a comprehensive Shopify integration that automated inventory synchronization and order processing for multiple client stores</li>
+            <li>Built a responsive, user-friendly order administration system</li>
+            <li>Designed and implemented customized dashboard interfaces for e-commerce analytics and reporting</li>
+            <li>Created reusable UI components using React, ensuring consistent design patterns across applications</li>
+            <li>Collaborated with backend developers to optimize API endpoints for frontend consumption</li>
+            <li>Participated in daily stand-ups and biweekly sprint planning meetings in an agile environment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div id="contact" class="container">
+    <div class="social-links">
+      <a href="https://linkedin.com/in/jorge-suarezV" class="social-link" target="_blank">LinkedIn</a>
+      <a href="https://github.com/JorgeSuarezV" class="social-link" target="_blank">GitHub</a>
+      <a href="mailto:jorge.sv.primero@gmail.com" class="social-link">Email</a>
+    </div>
+    <p>© 2025 Jorge Suarez. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Animation on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const animateElements = document.querySelectorAll('.section');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    animateElements.forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
