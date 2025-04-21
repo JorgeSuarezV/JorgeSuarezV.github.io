@@ -193,10 +193,6 @@
       object-fit: cover; /* o "cover" si preferís que rellene el div */
     }
 
-    .project-content {
-      padding: 1.5rem;
-    }
-
     .project-title {
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
@@ -288,46 +284,6 @@
       margin-bottom: 2rem;
     }
 
-    .education-date {
-      color: var(--secondary);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    /* Contact section */
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.25rem;
-      font-size: 1rem;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-    }
-
-    textarea.form-control {
-      min-height: 150px;
-    }
-
     /* Footer */
     footer {
       background-color: var(--dark);
@@ -414,6 +370,7 @@
       height: 0;
       overflow: hidden;
       margin-top: 1rem;
+      margin-bottom: 1rem; /* Add some space before the button */
     }
 
     .video-container iframe {
@@ -423,6 +380,85 @@
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    .project-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%; /* Ensure cards fill their grid cell */
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      background-color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1; /* Make content area take available space */
+      position: relative; /* For absolute positioning of button */
+      padding-bottom: 60px; /* Space for the button */
+    }
+
+
+    .project-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .project-content .btn {
+      position: absolute;
+      bottom: 1.5rem; /* Match the padding of project-content */
+      left: 1.5rem;
+    }
+
+    .project-tag {
+      background-color: #e5e7eb;
+      color: var(--dark);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.8rem;
+    }
+
+    /* This creates a spacer that pushes the button to the bottom */
+    .spacer {
+      flex-grow: 1;
+    }
+
+    /* Ensure the button is at the bottom of the card */
+    .project-card .btn {
+      margin-top: auto;
+      align-self: flex-start;
     }
   </style>
 </head>
@@ -534,7 +570,7 @@
       <!-- Project 1: Robotica-Brazo -->
       <div class="project-card">
         <div class="project-image">
-          <img class="" src="https://cdn.discordapp.com/attachments/1020822105610264678/1362701906773934202/image.webp?ex=68035a8c&is=6802090c&hm=9386a290f5354bef6d1599e77252c55ece39d047d4d995791aeca20df0404696&" alt="Robotic Arm Project">
+          <img src="https://cdn.discordapp.com/attachments/1020822105610264678/1362701906773934202/image.webp?ex=68035a8c&is=6802090c&hm=9386a290f5354bef6d1599e77252c55ece39d047d4d995791aeca20df0404696&" alt="Robotic Arm Project">
         </div>
         <div class="project-content">
           <h3 class="project-title">Robotic Arm Control System</h3>
@@ -553,6 +589,7 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen></iframe>
           </div>
+          <div class="spacer"></div>
           <a href="https://github.com/JorgeSuarezV/Robotica-Brazo" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; margin-top: 1rem;">View on GitHub</a>
         </div>
       </div>
@@ -578,6 +615,7 @@
             <span class="project-tag">Github Actions</span>
             <span class="project-tag">Azure</span>
           </div>
+          <div class="spacer"></div>
           <a href="https://github.com/ing-sis-suarez" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
         </div>
       </div>
@@ -596,6 +634,7 @@
             <span class="project-tag">Game development</span>
             <span class="project-tag">Game engine</span>
           </div>
+          <div class="spacer"></div>
           <a href="https://github.com/JorgeSuarezV/starships" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
         </div>
       </div>
@@ -615,6 +654,7 @@
             <span class="project-tag">Python</span>
             <span class="project-tag">Openai</span>
           </div>
+          <div class="spacer"></div>
           <a href="https://github.com/JorgeSuarezV/agenda-publica" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
         </div>
       </div>
@@ -635,6 +675,7 @@
             <span class="project-tag">Git</span>
             <span class="project-tag">Github Actions</span>
           </div>
+          <div class="spacer"></div>
           <a href="https://github.com/JorgeSuarezV/qa-guide" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
         </div>
       </div>
@@ -657,6 +698,7 @@
             <span class="project-tag">PostgreSQL</span>
             <span class="project-tag">Socket.io</span>
           </div>
+          <div class="spacer"></div>
           <a href="https://github.com/JorgeSuarezV/twitter-clone" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
         </div>
       </div>
